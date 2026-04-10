@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: atlas_prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: atlas_grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+
+  # Le backend et le frontend sont généralement exécutés localement via `npm run dev` en dev
+  # Si vous souhaitez les conteneuriser également, vous pouvez décommenter ces sections et créer leurs Dockerfiles
+  #
+  # backend:
+  #   build: ./backend
+  #   container_name: atlas_backend
+  #   ports:
+  #     - "4000:4000"
+  #   env_file: ./backend/.env
+  #   restart: unless-stopped
+  #
+  # frontend:
+  #   build: ./frontend
+  #   container_name: atlas_frontend
+  #   ports:
+  #     - "3001:3001"
+  #   env_file: ./frontend/.env.local
+  #   restart: unless-stopped
+
+volumes:
+  prometheus_data:
+  grafana_data:

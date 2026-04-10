@@ -1,0 +1,22 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # Noeuds Proxmox (Node Exporter)
+  - job_name: "node"
+    static_configs:
+      - targets:
+        - "192.168.1.10:9100" # pve-node-1
+        - "192.168.1.11:9100" # pve-node-2
+        - "192.168.1.12:9100" # pve-node-3
+
+  # Capteurs IoT (Custom Exporter Node.js ou ESP32)
+  - job_name: "iot"
+    static_configs:
+      - targets:
+        - "192.168.1.50:9200" # gateway iot locale
