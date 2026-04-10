@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* ── Variables globales (White/Blue/Orange) ─────────────────────────────── */
+:root {
+  --bg-primary: #4e1fb5;
+  /* slate-50 */
+  --bg-card: #8bb6e4;
+  --bg-card-hover: #2e87e0;
+  /* slate-100 */
+  --border: #090909;
+  /* slate-200 */
+  --accent-blue: #2563EB;
+  /* blue-600 */
+  --accent-orange: #F97316;
+  /* orange-500 */
+  --accent-cyan: #0c267b;
+  /* sky-500 */
+  --accent-green: #10B981;
+  /* emerald-500 */
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: #1E293B;
+  /* slate-800 */
+}
+
+/* ── Scrollbar fine ──────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+/* ── Card UI (IHM Neumorphic/Clean) ──────────────────────────────── */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(37, 99, 235, 0.3);
+  /* hover border blue */
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.08), 0 4px 6px -2px rgba(15, 67, 180, 0.04);
+}
+
+/* ── Gradient text ───────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-orange {
+  background: linear-gradient(135deg, var(--accent-orange), #fb923c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glow effect ─────────────────────────────────────── */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
+}
+
+.glow-orange {
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.15);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+}
+
+.glow-red {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
+}
+
+/* ── Pulse animation for status dot ─────────────────── */
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(0.85);
+  }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ── Sidebar active item ─────────────────────────────── */
+.nav-active {
+  background: rgba(113, 27, 241, 0.1);
+  border-left: 3px solid var(--accent-blue);
+  color: var(--accent-blue);
+  font-weight: 900;
+}
+
+.nav-item {
+  border-left: 3px solid transparent;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #6a17c3;
+  /* slate-500 */
+}
+
+.nav-item:hover {
+  background: #7334ea;
+  /* slate-100 */
+  color: #feffff;
+  /* slate-800 */
+}
